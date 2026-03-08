@@ -1,0 +1,10 @@
+struct AcceptedSocket acceptedSockets[10] ;
+int acceptedSocketsCount = 0;
+
+void sendRecievedMessageToTheOtherClients (char *buffer, int socketFD) {
+    for(int i = 0; i<acceptedSocketsCount; i++) {
+        if(acceptedSockets[i].acceptedSocketFD != socketFD) {
+            send(acceptedSockets[i].acceptedSocketFD,buffer, strlen(buffer), 0);
+        }
+    }
+}
